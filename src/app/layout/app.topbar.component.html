@@ -1,0 +1,97 @@
+<div class="layout-topbar" style="display: flex; flex-direction: column;">
+
+    <div style="display: flex; width: 100%; height: 38px;">
+        <div class="layout-topbar-logo">
+            <img src="assets/layout/images/Honeywell_Logo_RGB_Red.png" alt="logo">
+            <div style="font-weight: 400;border-left: 2px solid gainsboro;"><span style="margin-left:10px;">Cyber Account Planning</span></div>
+        </div>
+        <button #topbarmenubutton class="p-link layout-topbar-menu-button layout-topbar-button"
+            (click)="layoutService.showProfileSidebar()">
+            <i class="pi pi-ellipsis-v"></i>
+        </button>
+
+        <div #topbarmenu class="layout-topbar-menu"
+            [ngClass]="{'layout-topbar-menu-mobile-active': layoutService.state.profileSidebarVisible}">
+
+            <div style="padding: 8px;width: 90px;">
+                <p>Version: {{apiService.version}}</p>
+            </div>
+
+            <button class="p-link layout-topbar-button" pTooltip="Defect/Enhancement Link" (click)="openDefectLink()">
+                <i class="pi pi-wrench"></i>
+                <span>Defect</span>
+            </button>
+            <button class="p-link layout-topbar-button" pTooltip="Help File" (click)="downloadHelpFile()">
+                <i class="pi pi-question-circle"></i>
+                <span>Help</span>
+            </button>
+            <button class="p-link layout-topbar-button" (click)="op1.toggle($event)">
+                <i class="pi pi-user"></i>
+            </button>
+
+        </div>
+        <p-overlayPanel #op1 [style]="{'width': '250px'}">
+            <div class="flex align-items-center justify-content-center">
+                <div class="avatar" style="text-align: center;">
+                    <i class="pi pi-user"
+                        style="color: #708090;margin-top: 11px;color: #708090;font-size: 3rem;margin-left: 0.35em;">
+                    </i>
+                </div>
+            </div>
+            <div class="username" style="text-align: center;">{{this.apiService.userDetails?.employee?.nameFirst}}</div>
+            <div style="text-align: center;">
+                {{this.apiService.userDetails?.employee?.businessTitle}}
+            </div>
+            <div style="text-align: center;margin-top: 20px;">
+                <p-button label="Logout" icon="pi pi-sign-out" (click)="logOut()"></p-button>
+            </div>
+        </p-overlayPanel>
+    </div>
+
+    <div class="menubar-container" style="width: 105%; height: 32px;">
+        <!-- <p-menubar [model]="items" class="menubar"  [ngClass]="{'active': activeItem && activeItem.label === 'TravelForecast'}"></p-menubar>                      -->
+
+        <!-- <p-menubar>
+            <div class="row" style="width: 100%; display: flex;
+            justify-content: left;">
+                <div class="col-sm-2" [ngClass]="{'active-link':activeLink == 'myRequest'}"
+                    style="width: 10.5%; height: 30px; text-align: center; padding-top: 5px;">
+                    <a class="sidenav-link" (click)="navigateToMyRequest()">
+                        My Request
+                    </a>
+                </div>
+                 <div class="col-sm-2" [ngClass]="{'active-link':activeLink == 'NewTravelRequest'}"
+                    style="width: 10.5%; height: 30px; text-align: center; padding-top: 5px;">
+                    <a class="sidenav-link" (click)="navigateToNewTravelForecast()">
+                        New Travel Request
+                    </a>
+                </div>
+               <div class="col-sm-2" [ngClass]="{'active-link':activeLink == 'travelForecast'}"
+                    style="width: 10.5%; height: 30px; text-align: center; padding-top: 5px;">
+                    <a class="sidenav-link" (click)="navigateTravelForecast()">
+                        Travel Forecast
+                </a>
+                </div>
+                                
+                <div class="col-sm-2" [ngClass]="{'active-link':activeLink == 'configuration'}"
+                style="width: 10.5%; height: 30px; text-align: center; padding-top: 5px;">
+                <a class="sidenav-link" (click)="navigateToConfiguration()">
+                    Configuration
+                </a>
+            </div>
+            <div class="col-sm-2" [ngClass]="{'active-link': activeLink === 'reports' && showDropdown}" style="width: 10.5%; text-align: center;">
+                <div class="dropdown" (click)="toggleDropdown()">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" aria-haspopup="true" aria-expanded="false" style="background-color: #173655; padding-top: 7px; font-size: 15px; font-weight: 550; color: white; border: none;">
+                        Reports 
+                        <i class="pi pi-chevron-down"></i>
+                    </button>
+                    <div class="dropdown-menu" *ngIf="showDropdown" aria-labelledby="dropdownMenuButton" style="background-color: #e3e7ed; height: auto; text-align: left; padding-left: 3px;">
+                        <a style="color: black; display: inline-block; padding-top: 10px;" *ngFor="let option of reportOptions" class="dropdown-item" (click)="navigateOrOpenExternalLink(option.command)">{{ option.label }}</a>
+                    </div>
+                </div>
+            </div>
+            
+            </div>
+            
+        </p-menubar> -->
+    </div>
